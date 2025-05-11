@@ -15,9 +15,17 @@ class Solution(object):
             seen[num] = i
         return []
     
+    def threeConsecutiveOdds(self, arr):
+        '''
+        :type arr: List[int]
+        return type: bool
+        '''
+        for i in range(len(arr) - 2):
+            if arr[i] % 2 == 1 and arr[i+1] % 2 == 1 and arr[i+2] % 2 == 1:
+                return True
+        return False
+            
+    
 # Example usage
-nums = [2, 7, 11, 15]
-target = 9
 solution = Solution()
-result = solution.twoSum(nums, target)
-print(result)  # Output: [0, 1]
+print(solution.threeConsecutiveOdds(arr=[1, 2, 34, 3, 4, 5, 7, 23, 12]))
