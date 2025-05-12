@@ -1,3 +1,5 @@
+from collections import Counter
+
 class Solution(object):
 
     def twoSum(self, nums, target):
@@ -24,8 +26,35 @@ class Solution(object):
             if arr[i] % 2 == 1 and arr[i+1] % 2 == 1 and arr[i+2] % 2 == 1:
                 return True
         return False
-            
+    
+    def findEvenNumbers(self, digits):
+        """
+        :type digits List[int]
+        :return type: List[int]
+        """
+
+        result = set()
+        count = Counter(digits)
+
+        for i in range(10):
+            for j in range(10):
+                for k in range(0, 10, 2):
+                    tmp_count = Counter([i, j, k])
+
+                    valid = True
+                    for digit in tmp_count:
+                        if tmp_count[digit] > count[digit]:
+                            valid = False
+                            break
+
+                    if valid and i != 0:
+                        num = 100 * i + 10 * j + k
+                        result.add(num)
+
+        return sorted(result)
+
+
     
 # Example usage
 solution = Solution()
-print(solution.threeConsecutiveOdds(arr=[1, 2, 34, 3, 4, 5, 7, 23, 12]))
+print(solution.findEvenNumbers([2,2,8,8,2]))
