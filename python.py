@@ -52,9 +52,27 @@ class Solution(object):
                         result.add(num)
 
         return sorted(result)
+    
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        if x < 0 or (x % 10 == 0 and x != 0):
+            return False
+        
+        reversed_half = 0
+        while x > reversed_half:
+            digit = x % 10
+            reversed_half = reversed_half * 10 + digit
+            x //= 10
+        
+        return x == reversed_half or x == reversed_half // 10
 
 
     
 # Example usage
 solution = Solution()
-print(solution.findEvenNumbers([2,2,8,8,2]))
+# print(solution.findEvenNumbers([2,2,8,8,2]))
+print(solution.isPalindrome(121))
+print(solution.isPalindrome(122))
